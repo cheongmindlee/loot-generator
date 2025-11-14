@@ -14,14 +14,20 @@ public class LootGenerator {
 
 
         //Get the data set and put inside a MonstersList object
-        MonstersList monsters = new MonstersList("/Users/david/csc207/loot-generator/data/small/monstats.txt");
+        MonstersList monsters = new MonstersList("/Users/david/csc207/loot-generator/data/large/monstats.txt");
 
         //Get data set of every treasure class and put them into TreasureClassHashMap object
         TreasureClassHashMap treasureHM = 
-            new TreasureClassHashMap("/Users/david/csc207/loot-generator/data/small/TreasureClassEx.txt");
+            new TreasureClassHashMap("/Users/david/csc207/loot-generator/data/large/TreasureClassEx.txt");
     
         //Get data set of every armor item into am Armor object
-        Armor armorHM = new Armor("/Users/david/csc207/loot-generator/data/small/armor.txt");
+        Armor armorHM = new Armor("/Users/david/csc207/loot-generator/data/large/armor.txt");
+
+        //Get data set of every prefix into an Prefix object
+        Prefix prefix = new Prefix("/Users/david/csc207/loot-generator/data/large/MagicPrefix.txt");
+
+        //Get data set of every affix into an Affix object
+        Affix affix = new Affix("/Users/david/csc207/loot-generator/data/large/MagicSuffix.txt");
         //Delete at the end
         // for(String monster: monsters.getMonsters()){
         //     System.out.println(monster);
@@ -58,12 +64,46 @@ public class LootGenerator {
 
             //generate stat of base item
             int itemStat = generateBaseStat(armorHM, baseItem);
+
+            //Generate a random prefix and affix 
+            String prefixName = "";
+            String prefixAttribute = "";
+            String prefixStat = "";
+            Random rand = new Random();
+            int createPrefix = rand.nextInt(2);
+            if(createPrefix == 0){
+                String[] prefixData = generatePrefix(prefix);
+                prefixName = prefixData[0] + " ";
+                prefixAttribute = prefixData[1];
+                prefixStat = prefixData[2];
+            }
+
+            String affixName = "";
+            String affixAttribute = "";
+            String affixStat = "";
+            int createAffix = rand.nextInt(2);
+            if(createAffix == 0){
+                String[] affixData = generateAffix(affix);
+                affixName = " " + affixData[0];
+                affixAttribute = affixData[1];
+                affixStat = affixData[2];
+            }
+
             //Give output to user
             System.out.println("Fighting " + monsterName);
             System.out.println("You have slain " + monsterName + "!");
             System.out.println(monsterName + " dropped:\n");
-            System.out.println(baseItem);
+            System.out.println(prefixName + baseItem + affixName);
             System.out.println("Defense: " + itemStat);
+
+            //Output the attribute values if prefix and affix exist
+            if(createPrefix == 0){
+                System.out.println(prefixStat + " " + prefixAttribute);
+            }
+
+            if(createAffix == 0){
+                System.out.println(affixStat + " " + affixAttribute);
+            }
 
             //Once one round has been complete ask user if they wish to play again
             while(true){
@@ -83,8 +123,10 @@ public class LootGenerator {
                 }
             }
 
+            //Formatting newline
+            System.out.println();
+
         }
-        // TOOD: Implement me!
     }
 
     /**
@@ -140,5 +182,53 @@ public class LootGenerator {
         Random rand = new Random();
         int randomInt = rand.nextInt(min, max) + 1;
         return randomInt;
+    }
+
+    /**
+     * Returns the list holding the prefix, attribute, and random int between the attributes min and max
+     * @param prefix a prefix object
+     * @return a non empty string list
+     */
+    public static String[] generatePrefix (Prefix prefix){
+        
+        //Generate a random attribute
+        Random rand = new Random();
+        int randomInt = rand.nextInt(prefix.getSize());
+
+        //take in the data of the prefix
+        String[] tempPrefix = prefix.getPrefix(randomInt);
+        int min = Integer.parseInt(tempPrefix[2]);
+        int max = Integer.parseInt(tempPrefix[3]);
+
+        //Generate a random stat value between min and max
+        String randomStat = String.valueOf(min + rand.nextInt(max-min + 1));
+
+        String[] returnPrefix = {tempPrefix[0], tempPrefix[1], randomStat};
+
+        return returnPrefix;
+    }
+
+    /**
+     * Returns the list holding the affix, attribute, and random int between the attributes min and max
+     * @param prefix an affix object
+     * @return a non empty string list
+     */
+    public static String[] generateAffix (Affix prefix){
+        
+        //Generate a random attribute
+        Random rand = new Random();
+        int randomInt = rand.nextInt(prefix.getSize());
+
+        //take in the data of the affix
+        String[] tempAffix = prefix.getAffix(randomInt);
+        int min = Integer.parseInt(tempAffix[2]);
+        int max = Integer.parseInt(tempAffix[3]);
+
+        //Generate a random stat value between min and max
+        String randomStat = String.valueOf(min + rand.nextInt(max-min + 1));
+
+        String[] returnAffix = {tempAffix[0], tempAffix[1], randomStat};
+
+        return returnAffix;
     }
 }
