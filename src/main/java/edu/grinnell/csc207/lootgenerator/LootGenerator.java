@@ -45,7 +45,7 @@ public class LootGenerator {
             //generate stat of base item
             int itemStat = generateBaseStat(armorHM, baseItem);
 
-            //Generate a random prefix and affix 
+            //Generate a random prefix 
             String prefixName = "";
             String prefixAttribute = "";
             String prefixStat = "";
@@ -58,6 +58,7 @@ public class LootGenerator {
                 prefixStat = prefixData[2];
             }
 
+            //Generate a random affix
             String affixName = "";
             String affixAttribute = "";
             String affixStat = "";
