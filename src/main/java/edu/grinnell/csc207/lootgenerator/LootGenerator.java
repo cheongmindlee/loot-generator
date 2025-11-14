@@ -6,8 +6,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class LootGenerator {
-    /** The path to the dataset (either the small or large set). */
-    private static final String DATA_SET = "data/small";
     
     public static void main(String[] args) throws IOException{
         System.out.println("This program kills monsters and generates loot!");
@@ -28,25 +26,7 @@ public class LootGenerator {
 
         //Get data set of every affix into an Affix object
         Affix affix = new Affix("/Users/david/csc207/loot-generator/data/large/MagicSuffix.txt");
-        //Delete at the end
-        // for(String monster: monsters.getMonsters()){
-        //     System.out.println(monster);
-        // }
-
-        //Delete at end
-        // Make every element an Monser 
-        // test choose a random monster and get its name, value, level and treasure class
-        //System.out.println(monsters.getMonsters().get(5).getLevel());
-
-        //Delete at end
-        // TreasureClassHashMap treasureHM = 
-        //     new TreasureClassHashMap("/Users/david/csc207/loot-generator/data/large/TreasureClassEx.txt");
-        // HashMap<String, String[]> checkHM = treasureHM.getTreasureHM();
-        // String[] check = checkHM.get("armo30");
-        // for(String item: check){
-        //     System.out.println(item);
-        // }
-
+        
         //Initialize scanner for user input
         Scanner input = new Scanner(System.in);
 
