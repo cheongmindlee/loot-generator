@@ -4,13 +4,23 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Takes in loot and handles all the data
+ */
 public class LootGenerator {
 
+    /**
+     * The main driver of the program
+     * 
+     * @param args String to start program
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         System.out.println("This program kills monsters and generates loot!");
 
         // Get the data set and put inside a MonstersList object
-        MonstersList monsters = new MonstersList("/Users/david/csc207/loot-generator/data/large/monstats.txt");
+        MonstersList monsters = new MonstersList(
+                "/Users/david/csc207/loot-generator/data/large/monstats.txt");
 
         // Get data set of every treasure class and put them into TreasureClassHashMap
         // object
@@ -35,8 +45,8 @@ public class LootGenerator {
         while (gameState) {
             // Generate a monster to fight
             Monster monster = pickMonster(monsters);
-            String monsterName = monster.getMonsterClass();
-            String monsterClass = monster.getTreasure();
+            String monsterName = monster.returnMonsterClass();
+            String monsterClass = monster.returnTreasure();
 
             // generate a base item
             String baseItem = generateBaseItem(treasureHM, monsterClass);
@@ -100,7 +110,7 @@ public class LootGenerator {
                     gameState = false;
                     break;
                 } else {
-                    continue;
+                    System.out.println("That is not a valid response.");
                 }
             }
 
@@ -118,10 +128,10 @@ public class LootGenerator {
      */
     public static Monster pickMonster(MonstersList monsters) {
         Random rand = new Random();
-        int size = monsters.getMonsters().size();
+        int size = monsters.returnMonsters().size();
         int randomInt = rand.nextInt(size);
 
-        return monsters.getMonster(randomInt);
+        return monsters.returnMonster(randomInt);
     }
 
     /**
@@ -160,7 +170,7 @@ public class LootGenerator {
      */
     public static int generateBaseStat(Armor armorHM, String armor) {
         // Take in the min and max values of the given armor
-        Integer[] minMax = armorHM.getArmorMinMax(armor);
+        Integer[] minMax = armorHM.returnArmorMinMax(armor);
         int min = minMax[0];
         int max = minMax[1];
 
@@ -181,17 +191,21 @@ public class LootGenerator {
 
         // Generate a random attribute
         Random rand = new Random();
-        int randomInt = rand.nextInt(prefix.getSize());
+        int randomInt = rand.nextInt(prefix.returnSize());
 
         // take in the data of the prefix
-        String[] tempPrefix = prefix.getPrefix(randomInt);
+        String[] tempPrefix = prefix.returnPrefix(randomInt);
         int min = Integer.parseInt(tempPrefix[2]);
         int max = Integer.parseInt(tempPrefix[3]);
 
         // Generate a random stat value between min and max
         String randomStat = String.valueOf(min + rand.nextInt(max - min + 1));
 
-        String[] returnPrefix = { tempPrefix[0], tempPrefix[1], randomStat };
+        String[] returnPrefix = {
+                tempPrefix[0],
+                tempPrefix[1],
+                randomStat
+        };
 
         return returnPrefix;
     }
@@ -203,14 +217,14 @@ public class LootGenerator {
      * @param prefix an affix object
      * @return a non empty string list
      */
-    public static String[] generateAffix(Affix prefix) {
+    public static String[] generateAffix(Affix affix) {
 
         // Generate a random attribute
         Random rand = new Random();
-        int randomInt = rand.nextInt(prefix.getSize());
+        int randomInt = rand.nextInt(affix.returnSize());
 
         // take in the data of the affix
-        String[] tempAffix = prefix.getAffix(randomInt);
+        String[] tempAffix = affix.returnAffix(randomInt);
         int min = Integer.parseInt(tempAffix[2]);
         int max = Integer.parseInt(tempAffix[3]);
 

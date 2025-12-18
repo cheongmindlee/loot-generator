@@ -1,53 +1,64 @@
 package edu.grinnell.csc207.lootgenerator;
 
-//This class should parse each monster and holds the class, level, type and treasure 
-// class of a monster
+/**
+ * This class should parse each monster and holds the class, level, type and
+ * treasure class of a monster
+ */
 public class Monster {
 
-  //Initialize 
-  String monsterClass;
-  int level;
-  String type;
-  String treasure;
+    // Initialize
+    String monsterClass;
+    int level;
+    String type;
+    String treasure;
 
-  public Monster(String monster){
-    String[] parsedData = monster.split("\t");
-    this.monsterClass = parsedData[0];
-    this.type = parsedData[1];
-    this.level = Integer.parseInt(parsedData[2]);
-    this.treasure = parsedData[3];
-  }
+    /**
+     * Takes a monster name and sets all its fields
+     * 
+     * @param monster String name of the monster
+     */
+    public Monster(String monster) {
+        String[] parsedData = monster.split("\t");
+        this.monsterClass = parsedData[0];
+        this.type = parsedData[1];
+        this.level = Integer.parseInt(parsedData[2]);
+        this.treasure = parsedData[3];
+    }
 
-  /**
-   * 
-   * @return monsterClass
-   */
-  public String getMonsterClass(){
-    return monsterClass;
-  }
+    /**
+     * Returns the monsters class
+     * 
+     * @return monsterClass
+     */
+    public String returnMonsterClass() {
+        return monsterClass;
+    }
 
-  /**
-   * 
-   * @return monster level
-   */
-  public int getLevel(){
-    return level;
-  }
+    /**
+     * Rretyrns the level of the monster
+     * 
+     * @return monster level
+     */
+    public int returnLevel() {
+        return level;
+    }
 
-  /**
-   * 
-   * @return monster type
-   */
-  public String getType(){
-    return type;
-  }
+    /**
+     * Returns the monsters type
+     * 
+     * @return monster type
+     */
+    public String returnType() {
+        return type;
+    }
 
-  /**
-   * 
-   * @return monster's treasure class
-   */
-  public String getTreasure(){
-    return treasure;
-  }
-  
+    /**
+     * Returns the treasure
+     * 
+     * @return monster's treasure class
+     */
+    public String returnTreasure() {
+        return treasure;
+    }
+
 }
