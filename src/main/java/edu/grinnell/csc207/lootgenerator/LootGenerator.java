@@ -202,9 +202,9 @@ public class LootGenerator {
         String randomStat = String.valueOf(min + rand.nextInt(max - min + 1));
 
         String[] returnPrefix = {
-                tempPrefix[0],
-                tempPrefix[1],
-                randomStat
+            tempPrefix[0],
+            tempPrefix[1],
+            randomStat
         };
 
         return returnPrefix;
@@ -214,7 +214,7 @@ public class LootGenerator {
      * Returns the list holding the affix, attribute, and random int between the
      * attributes min and max
      * 
-     * @param prefix an affix object
+     * @param affix an affix object
      * @return a non empty string list
      */
     public static String[] generateAffix(Affix affix) {
@@ -231,7 +231,9 @@ public class LootGenerator {
         // Generate a random stat value between min and max
         String randomStat = String.valueOf(min + rand.nextInt(max - min + 1));
 
-        String[] returnAffix = { tempAffix[0], tempAffix[1], randomStat };
+        String[] returnAffix = {
+            tempAffix[0], tempAffix[1], randomStat 
+        };
 
         return returnAffix;
     }

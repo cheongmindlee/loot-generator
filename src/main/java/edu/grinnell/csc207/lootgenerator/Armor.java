@@ -5,11 +5,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 
-//Creates a Hashmap where armor name is the key and the values are the min and max values
-//  of the armor
+/**
+ * Creates a Hashmap where armor name is the key and the values are the min and
+ * max values of the armor
+ */
 public class Armor {
     HashMap<String, Integer[]> armorHM;
 
+    /**
+     * Initialies and handles all data in the armor file
+     * 
+     * @param pathString String to file holding armor data
+     */
     public Armor(String pathString) {
         // Initalize the armor hashmap
         armorHM = new HashMap<>();
@@ -27,7 +34,9 @@ public class Armor {
                 String[] splitArmor = armor.split("\t");
                 int min = Integer.parseInt(splitArmor[1]);
                 int max = Integer.parseInt(splitArmor[2]);
-                Integer[] minMax = { min, max };
+                Integer[] minMax = {
+                    min, max 
+                };
                 armorHM.put(splitArmor[0], minMax);
             }
 
