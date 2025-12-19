@@ -6,14 +6,17 @@ Authors: David Lee
 
 - Fixed all of my checkstyle errors and corrected Java code conventions
 - Added all the necessary files to my repository
+- Changed my tests so that it actually runs 1000 tests to ake sure my program keeps running for
+-   large input
 
 ## Resources
 
+- https://stackoverflow.com/questions/6415728/junit-testing-with-simulated-user-input
+-     - Explained to me how to simulate input for testing my main function
 - https://www.baeldung.com/java-string-split-by-newline
 -     - Explained to me \\R instead of \n to parse by newlines
 - https://www.geeksforgeeks.org/java/arrays-copyof-in-java-with-examples/
 -     - Explained to me the Arrays.copyOf function to get a subarray
-- ...
 
 ## Revision Log
 
