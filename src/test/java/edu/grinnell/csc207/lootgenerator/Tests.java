@@ -9,7 +9,6 @@ public class Tests {
     @Test
     public void thousandRuns() throws IOException {
         String[] temp = { "" };
-        int count = 0;
         // Create my fake input
         String generatedInput = "";
         for (int i = 0; i < 1000; i++) {
@@ -21,7 +20,6 @@ public class Tests {
         System.setIn(new ByteArrayInputStream(generatedInput.getBytes()));
         try {
             LootGenerator.main(temp);
-            count++;
         } catch (Exception e) {
             e.printStackTrace();
         }
