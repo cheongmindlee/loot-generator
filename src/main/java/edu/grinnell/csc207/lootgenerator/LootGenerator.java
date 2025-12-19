@@ -31,7 +31,8 @@ public class LootGenerator {
         Armor armorHM = new Armor("/Users/david/csc207/loot-generator/data/large/armor.txt");
 
         // Get data set of every prefix into an Prefix object
-        Prefix prefix = new Prefix("/Users/david/csc207/loot-generator/data/large/MagicPrefix.txt");
+        Prefix prefix = new Prefix(
+                "/Users/david/csc207/loot-generator/data/large/MagicPrefix.txt");
 
         // Get data set of every affix into an Affix object
         Affix affix = new Affix("/Users/david/csc207/loot-generator/data/large/MagicSuffix.txt");
@@ -118,6 +119,7 @@ public class LootGenerator {
             System.out.println();
 
         }
+        input.close();
     }
 
     /**
@@ -202,9 +204,9 @@ public class LootGenerator {
         String randomStat = String.valueOf(min + rand.nextInt(max - min + 1));
 
         String[] returnPrefix = {
-            tempPrefix[0],
-            tempPrefix[1],
-            randomStat
+                tempPrefix[0],
+                tempPrefix[1],
+                randomStat
         };
 
         return returnPrefix;
@@ -232,7 +234,7 @@ public class LootGenerator {
         String randomStat = String.valueOf(min + rand.nextInt(max - min + 1));
 
         String[] returnAffix = {
-            tempAffix[0], tempAffix[1], randomStat 
+                tempAffix[0], tempAffix[1], randomStat
         };
 
         return returnAffix;
